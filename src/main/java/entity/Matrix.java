@@ -47,9 +47,12 @@ public class Matrix {
         return _data[r][c];
     }
 
+    private void set(int r, int c, int data) {
+        _data[r][c] = data;
+    }
+
     public Matrix plus(Matrix other) throws InvalidMatrixAdditionException {
-        if (this.getRows() != other.getRows() || this.getColumns() != other.getColumns())
-            throw new InvalidMatrixAdditionException(this, other);
+        verifyPreconditions(this, other);
         Matrix m3 = new Matrix(r, c);
         for (int i = 0; i < r; i++) {
             for (int j = 0; j < c; j++) {
@@ -59,8 +62,9 @@ public class Matrix {
         return m3;
     }
 
-    private void set(int r, int c, int data) {
-        _data[r][c] = data;
+    public Matrix parallelPlus(Matrix other, int threads) {
+        verifyPreconditions(this, other);
+//        assignZones()
     }
 
     public void show() {
@@ -70,5 +74,10 @@ public class Matrix {
             }
             System.out.print("\n");
         }
+    }
+
+    private void verifyPreconditions(Matrix m1, Matrix m2) {
+        if (m2.getRows() != m1.getRows() || m2.getColumns() != m1.getColumns())
+            throw new InvalidMatrixAdditionException(m2, m1);
     }
 }
