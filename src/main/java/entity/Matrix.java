@@ -1,14 +1,15 @@
 package entity;
 
 import exception.InvalidMatrixAdditionException;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Created by paracelsus on 27/10/2016.
  */
 public class Matrix {
     private int[][] _data;
-    private int r; // no. of rows
-    private int c; // no. of columns
+    private int rows; // no. of rows
+    private int columns; // no. of columns
 
     /**
      * Creates a new matrix of determined size.
@@ -17,22 +18,22 @@ public class Matrix {
      */
     public Matrix(int r, int c) {
         _data = new int[r][c];
-        this.r = r;
-        this.c = c;
+        this.rows = r;
+        this.columns = c;
     }
 
     public Matrix(int[][] _data) {
         this._data = _data;
-        this.r = _data.length;
-        this.c = _data[0].length;
+        this.rows = _data.length;
+        this.columns = _data[0].length;
     }
 
     public int getRows() {
-        return r;
+        return rows;
     }
 
     public int getColumns() {
-        return c;
+        return columns;
     }
 
     /**
@@ -53,9 +54,9 @@ public class Matrix {
 
     public Matrix plus(Matrix other) throws InvalidMatrixAdditionException {
         verifyPreconditions(this, other);
-        Matrix m3 = new Matrix(r, c);
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < c; j++) {
+        Matrix m3 = new Matrix(rows, columns);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 m3.set(i, j, this.get(i, j) + other.get(i, j));
             }
         }
@@ -64,12 +65,14 @@ public class Matrix {
 
     public Matrix parallelPlus(Matrix other, int threads) {
         verifyPreconditions(this, other);
-//        assignZones()
+        throw new NotImplementedException();
     }
 
+
+
     public void show() {
-        for (int i = 0; i < r; i++) {
-            for (int j = 0; j < c; j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 System.out.print(_data[i][j] + " ");
             }
             System.out.print("\n");
