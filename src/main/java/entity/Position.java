@@ -4,19 +4,23 @@ package entity;
  * Created by paracelsus on 03/11/2016.
  */
 public class Position {
-    private int rowNumber; // no. of rows
-    private int columnNumber; // no. of columns
+    private int _r; // no. of rows
+    private int _c; // no. of columns
 
     public Position(int r, int c) {
-        this.rowNumber = r;
-        this.columnNumber = c;
+        this._r = r;
+        this._c = c;
     }
 
     public int getRow() {
-        return rowNumber;
+        return _r;
     }
 
     public int getColumn() {
-        return columnNumber;
+        return _c;
+    }
+
+    public void show() {
+        System.out.format("P {%d} {%d} \n", getRow(), getColumn());
     }
 }
