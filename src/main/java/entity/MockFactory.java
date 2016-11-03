@@ -10,7 +10,7 @@ public class MockFactory {
         return new Matrix(r, c);
     }
 
-    static Matrix getDataMatrix() {
+    public static Matrix getDataMatrix() {
         return new Matrix(new int[][]{
                 {1, 2},
                 {3, 4},

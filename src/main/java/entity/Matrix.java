@@ -60,26 +60,13 @@ public class Matrix {
         return _data[r][c];
     }
 
-    private void set(int r, int c, int data) {
+    public void set(int r, int c, int data) {
         _data[r][c] = data;
     }
 
-
-
     public Matrix plus(Matrix other) throws InvalidMatrixAdditionException {
         verifyPreconditions(this, other);
-        Matrix m3 = new Matrix(_r, _c);
-        for (int i = 0; i < _r; i++) {
-            for (int j = 0; j < _c; j++) {
-                m3.set(i, j, this.get(i, j) + other.get(i, j));
-            }
-        }
-        return m3;
-    }
-
-    public Matrix parallelPlus(Matrix other, int threads) {
-        verifyPreconditions(this, other);
-        throw new NotImplementedException();
+        return MatrixAddition.add(this, other);
     }
 
     public void show() {

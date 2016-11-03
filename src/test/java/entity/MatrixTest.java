@@ -10,17 +10,16 @@ import static org.junit.Assert.*;
  */
 public class MatrixTest {
     @Test
-    public void elemZeroAt() throws Exception {
+    public void emptyConstruction() {
         final Matrix m45 = MockFactory.getEmptyMatrix(4, 5);
-        m45.show();
         final Matrix m26 = MockFactory.getEmptyMatrix(2, 6);
-        assertTrue(m45.get(0, 0) == 0);
+        assertEquals(0, m45.get(0, 0));
+        assertEquals(0, m26.get(1, 1));
     }
 
     @Test
-    public void elemAt() throws Exception {
+    public void dataConstruction() {
         final Matrix m = MockFactory.getDataMatrix();
-        m.show();
         assertTrue(m.get(0, 0) == 1);
         assertTrue(m.get(1, 1) == 4);
     }
