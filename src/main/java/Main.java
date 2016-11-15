@@ -7,8 +7,6 @@ import rx.schedulers.Schedulers;
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("heii");
-
         final Observable<String> meow = Observable.just("meow");
         meow.subscribeOn(Schedulers.newThread());
         meow.subscribe(new Action1<String>() {

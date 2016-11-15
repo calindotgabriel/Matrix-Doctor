@@ -1,51 +1,39 @@
 package entity;
 
-import exception.InvalidMatrixAdditionException;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
- * Created by paracelsus on 27/10/2016.
+ * Used to represent a
+ * mathematical bi-dimensional data structure.
  */
 public class Matrix {
-    private int[][] _data;
-    private int _r; // no. of _r
-    private int _c; // no. of _c
-    private Position start;
-    private Position end;
+    private int[][] data;
+    private int rows; // no. of rows
+    private int cols; // no. of cols
 
     /**
      * Creates a new matrix of determined size.
-     * @param r number of _r
-     * @param c number of _c
+     * @param r number of rows
+     * @param c number of cols
      */
     public Matrix(int r, int c) {
-        _data = new int[r][c];
-        this._r = r;
-        this._c = c;
+        data = new int[r][c];
+        this.rows = r;
+        this.cols = c;
     }
 
-    public Matrix(int[][] _data) {
-        this._data = _data;
-        this._r = _data.length;
-        this._c = _data[0].length;
-        this.start = new Position(0, 0);
-        this.end = new Position(_r, _c);
+    public Matrix(int[][] data) {
+        this.data = data;
+        this.rows = data.length;
+        this.cols = data[0].length;
     }
 
     public int getRows() {
-        return _r;
+        return rows;
     }
 
     public int getColumns() {
-        return _c;
-    }
-
-    public Position getStart() {
-        return start;
-    }
-
-    public Position getEnd() {
-        return end;
+        return cols;
     }
 
     /**
@@ -57,25 +45,16 @@ public class Matrix {
      * @return the element
      */
     public int get(int r, int c) {
-        return _data[r][c];
+        return data[r][c];
     }
 
     public void set(int r, int c, int data) {
-        _data[r][c] = data;
+        this.data[r][c] = data;
     }
 
-    public Matrix plus(Matrix other) throws InvalidMatrixAdditionException {
+    public Matrix plus(Matrix other) {
         verifyPreconditions(this, other);
-        return MatrixAddition.add(this, other);
-    }
-
-    public void show() {
-        for (int i = 0; i < _r; i++) {
-            for (int j = 0; j < _c; j++) {
-                System.out.print(_data[i][j] + " ");
-            }
-            System.out.print("\n");
-        }
+        throw new NotImplementedException();
     }
 
     private void verifyPreconditions(Matrix m1, Matrix m2) {
@@ -83,24 +62,26 @@ public class Matrix {
             throw new InvalidMatrixAdditionException(m2, m1);
     }
 
-    public Matrix cut(Position p1, Position p2) {
-        final int rows = p2.getRow() - p1.getRow() + 1;
-        final int cols = p2.getColumn() - p1.getColumn() + 1;
-        final Matrix matrix = new Matrix(rows, cols);
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                System.out.format("(%d)(%d) \n", i, j);
-                matrix.set(i, j, this.get(i + p1.getRow(),j));
+                builder.append(data[i][j]).append(" ");
             }
+            builder.append("\n");
         }
-        return matrix;
+        return builder.toString();
     }
 
-    public int getFirst() {
+
+
+
+    int getFirst() {
         return get(0, 0);
     }
 
-    public int getLast() {
-        return get(_r - 1, _c - 1);
+    int getLast() {
+        return get(rows - 1, cols - 1);
     }
 }

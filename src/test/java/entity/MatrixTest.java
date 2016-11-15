@@ -1,6 +1,5 @@
 package entity;
 
-import exception.InvalidMatrixAdditionException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -40,14 +39,6 @@ public class MatrixTest {
         assertEquals(12, m3.get(2, 1));
     }
 
-    @Test
-    public void parallelPlusIsCorrect() {
-        final Matrix m1 = MockFactory.getDataMatrix();
-        final Matrix m2 = MockFactory.getDataMatrix();
-        final Matrix m3 = m1.parallelPlus(m2, 1);
-        assertTrue(m3.get(0, 0) == 2);
-        assertEquals(12, m3.get(2, 1));
-    }
 
 
 
