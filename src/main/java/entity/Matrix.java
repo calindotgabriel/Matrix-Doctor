@@ -53,14 +53,18 @@ public class Matrix {
     }
 
     public Matrix plus(Matrix other) {
-        verifyPreconditions(this, other);
-        throw new NotImplementedException();
+        Matrix result = new Matrix(rows, cols);
+        if (!Preconditions.canAdd(this, other))
+            throw new IllegalArgumentException();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                new AdditionThread(this.get(i, j), other.get(i,j), result).run();
+            }
+        }
+        return result;
     }
 
-    private void verifyPreconditions(Matrix m1, Matrix m2) {
-        if (m2.getRows() != m1.getRows() || m2.getColumns() != m1.getColumns())
-            throw new InvalidMatrixAdditionException(m2, m1);
-    }
+
 
     @Override
     public String toString() {
