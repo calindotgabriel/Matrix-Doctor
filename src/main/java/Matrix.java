@@ -6,8 +6,6 @@ import java.util.Collection;
  */
 class Matrix {
 
-    public static final String SPACE = " ";
-    public static final String NEWLINE = "\n";
     private final int[][] mData;
 
     Matrix(int[][] data) {
@@ -29,19 +27,6 @@ class Matrix {
 
     private int getCols() {
         return mData[0].length;
-    }
-
-    public void set(int x, int y, int value) {
-        mData[x][y] = value;
-    }
-
-    /**
-     * Returns the eleme
-     * @param x row position
-     * @param y column position
-     */
-    int get(int x, int y) {
-        return mData[x][y];
     }
 
     /**
@@ -71,7 +56,26 @@ class Matrix {
         }
         return result;
     }
-    
+
+    public void set(int x, int y, int value) {
+        mData[x][y] = value;
+    }
+
+    /**
+     * Returns the eleme
+     * @param x row position
+     * @param y column position
+     */
+    int get(int x, int y) {
+        return mData[x][y];
+    }
+
+    /**
+     * Multiplies this matrix and another in parallel.
+     * A new thread is created for every addition operation.
+     * @param other the other matrix
+     * @return obtained {@link Matrix}
+     */
     Matrix multiply(Matrix other) {
         final Collection<Thread> threads = new ArrayList<Thread>();
         Matrix result = new Matrix(getRows(), getCols());
@@ -101,9 +105,9 @@ class Matrix {
         final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < getRows(); i++) {
             for (int j = 0; j < getCols(); j++) {
-                builder.append(get(i, j)).append(SPACE);
+                builder.append(get(i, j)).append(Constants.SPACE);
             }
-            builder.append(NEWLINE);
+            builder.append(Constants.NEWLINE);
         }
         return builder.toString();
     }

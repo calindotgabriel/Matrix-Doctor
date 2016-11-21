@@ -2,23 +2,23 @@
  * Created by calin on 21.11.2016.
  */
 class MatrixAdditionThread extends Thread {
-    private final Matrix mFirstMatrix;
-    private final Matrix mSecMatrix;
-    private final int mPosX;
-    private final int mPosY;
-    private final Matrix mResultMatrix;
+    private final Matrix firstMatrix;
+    private final Matrix secMatrix;
+    private final int i;
+    private final int j;
+    private final Matrix resMatrix;
 
     MatrixAdditionThread(Matrix m1, Matrix m2, int x, int y, Matrix result) {
-        this.mFirstMatrix = m1;
-        this.mSecMatrix = m2;
-        this.mPosX = x;
-        this.mPosY = y;
-        this.mResultMatrix = result;
+        this.firstMatrix = m1;
+        this.secMatrix = m2;
+        this.i = x;
+        this.j = y;
+        this.resMatrix = result;
     }
 
     @Override
     public void run() {
-        final int value = mFirstMatrix.get(mPosX, mPosY) + mSecMatrix.get(mPosX, mPosY);
-        mResultMatrix.set(mPosX, mPosY, value);
+        final int value = firstMatrix.get(i, j) + secMatrix.get(i, j);
+        resMatrix.set(i, j, value);
     }
 }

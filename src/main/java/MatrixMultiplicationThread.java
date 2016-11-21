@@ -1,26 +1,27 @@
 /**
- * Created by calin on 21.11.2016.
+ * Thread class used to make a multiplication operation given 3 distinct coordinates in a BI-Dimensional space.
+ * It computes the required value in a separate thread.
  */
 class MatrixMultiplicationThread extends Thread{
-    private final Matrix mFirstMatrix;
-    private final Matrix mSecMatrix;
+    private final Matrix firstMatrix;
+    private final Matrix secMatrix;
     private final int i;
     private final int j;
     private final int k;
-    private final Matrix mResultMatrix;
+    private final Matrix resultMatrix;
 
     MatrixMultiplicationThread(Matrix m1, Matrix m2, int i, int j, int k, Matrix result) {
-        this.mFirstMatrix = m1;
-        this.mSecMatrix = m2;
+        this.firstMatrix = m1;
+        this.secMatrix = m2;
         this.i = i;
         this.j = j;
         this.k = k;
-        this.mResultMatrix = result;
+        this.resultMatrix = result;
     }
 
     @Override
     public void run() {
-        final int value = mFirstMatrix.get(i, k) * mSecMatrix.get(k, j);
-        mResultMatrix.set(i, j, mResultMatrix.get(i, j) + value);
+        final int value = firstMatrix.get(i, k) * secMatrix.get(k, j);
+        resultMatrix.set(i, j, resultMatrix.get(i, j) + value);
     }
 }
