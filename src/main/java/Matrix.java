@@ -14,11 +14,12 @@ class Matrix {
 
     /**
      * Creates a empty matrix with given rows and cols.
+     *
      * @param rows number of rows
      * @param cols number of columns
      */
     private Matrix(int rows, int cols) {
-        this.mData = new int[rows][cols];
+        this.mData = new int[rows + 1][cols + 1];
     }
 
     private int getRows() {
@@ -32,6 +33,7 @@ class Matrix {
     /**
      * Adds this matrix and another in parallel.
      * A new thread is created for every addition operation.
+     *
      * @param other the other matrix
      * @return obtained {@link Matrix}
      */
@@ -63,6 +65,7 @@ class Matrix {
 
     /**
      * Returns the eleme
+     *
      * @param x row position
      * @param y column position
      */
@@ -73,6 +76,7 @@ class Matrix {
     /**
      * Multiplies this matrix and another in parallel.
      * A new thread is created for every addition operation.
+     *
      * @param other the other matrix
      * @return obtained {@link Matrix}
      */
@@ -100,9 +104,45 @@ class Matrix {
         return result;
     }
 
+    void sort() {
+        boolean sorted = false;
+        while (!sorted) {
+            for (int i = 0; i < getRows() - 1; i++) {
+                for (int j = 0; j < getCols() - 1; j++) {
+                    if (i == j || i > j || i < j) {
+                        System.out.format("Picked i = %d & j = %d \n", i, j);
+                        int current = get(i, j);
+                        int nextInDiag = get(i + 1, j + 1);
+                        if (current > nextInDiag) { // then we should sort
+                            set(i, j, nextInDiag);
+                            set(i + 1, j + 1, current);
+                            sorted = false;
+                        } else {
+                            sorted = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Matrix other = (Matrix) obj;
+        for (int i = 0; i < getRows(); i++) {
+            for (int j = 0; j < getCols(); j++) {
+                if (this.get(i, j) != other.get(i, j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        builder.append(Constants.NEWLINE);
         for (int i = 0; i < getRows(); i++) {
             for (int j = 0; j < getCols(); j++) {
                 builder.append(get(i, j)).append(Constants.SPACE);

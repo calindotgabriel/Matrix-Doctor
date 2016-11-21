@@ -43,5 +43,31 @@ public class MatrixTest {
         assertEquals(43, m3.get(1, 1));
     }
 
+    @Test
+    public void sort3() {
+        Matrix m = new Matrix(new int[][] {
+                {20, 9, 1},
+                {5, 16, 6},
+                {0, 3, 10}
+        });
+        m.sort();
+        Matrix expected = new Matrix(new int[][] {
+                {10, 6, 1},
+                {3, 16, 9},
+                {0, 5, 20}
+        });
+        assertSame(expected, m);
+    }
 
+    @Test
+    public void sort4() {
+        Matrix m = new Matrix(new int[][] {
+                {20, 9, 1, 7},
+                {5, 16, 6, 8},
+                {0, 3, 10, 9},
+                {0, 55, 5, 4}
+        });
+        m.sort();
+        System.out.println(m);
+    }
 }
