@@ -110,7 +110,6 @@ class Matrix {
             for (int i = 0; i < getRows() - 1; i++) {
                 for (int j = 0; j < getCols() - 1; j++) {
                     if (i == j || i > j || i < j) {
-                        System.out.format("Picked i = %d & j = %d \n", i, j);
                         int current = get(i, j);
                         int nextInDiag = get(i + 1, j + 1);
                         if (current > nextInDiag) { // then we should sort
