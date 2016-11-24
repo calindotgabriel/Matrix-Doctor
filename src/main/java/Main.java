@@ -1,6 +1,4 @@
-import rx.Observable;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import java.io.IOException;
 
 /**
  * L0
@@ -12,7 +10,9 @@ import rx.schedulers.Schedulers;
  *  Methods for reading & show matrix
  */
 public class Main {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
+        final String file = Utils.readFile("file.txt");
+        System.out.println(file);
     }
+
 }
