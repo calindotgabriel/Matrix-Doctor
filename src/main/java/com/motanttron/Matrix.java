@@ -27,7 +27,7 @@ public class Matrix {
      * @param rows number of rows
      * @param cols number of columns
      */
-    private Matrix(int rows, int cols) {
+    public Matrix(int rows, int cols) {
         this.data = new int[rows][cols];
         this.rows = rows;
         this.cols = cols;
@@ -47,10 +47,6 @@ public class Matrix {
 
     public void setRows(int rows) {
         this.rows = rows;
-    }
-
-    public void setCols(int cols) {
-        this.cols = cols;
     }
 
     /**
@@ -84,6 +80,10 @@ public class Matrix {
 
     public void set(int x, int y, int value) {
         data[x][y] = value;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
     }
 
     /**
@@ -150,6 +150,8 @@ public class Matrix {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
         Matrix other = (Matrix) obj;
         for (int i = 0; i < getRows(); i++) {
             for (int j = 0; j < getCols(); j++) {
@@ -172,5 +174,10 @@ public class Matrix {
             builder.append(Constants.NEWLINE);
         }
         return builder.toString();
+    }
+
+    // print its string representation
+    public void show() {
+        System.out.print(toString());
     }
 }

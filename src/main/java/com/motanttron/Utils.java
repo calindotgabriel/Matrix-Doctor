@@ -1,7 +1,6 @@
 package com.motanttron;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -9,20 +8,32 @@ import java.util.Scanner;
  */
 public class Utils {
 
+    public static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-    public static String readFile(String pathname) throws IOException {
-        File file = new File(pathname);
-        StringBuilder fileContents = new StringBuilder((int)file.length());
-        Scanner scanner = new Scanner(file);
-        String lineSeparator = System.getProperty("line.separator");
-
+    /**
+     * Reads input as a string from a file.
+     *
+     * @param path path of File
+     * @return the String representation
+     * @throws IOException
+     */
+    public static String safeStringFromFile(String path) {
+        String result = "";
         try {
-            while(scanner.hasNextLine()) {
-                fileContents.append(scanner.nextLine() + lineSeparator);
+            File file = new File(path);
+            if (!file.exists()) {
+//                file.getParentFile().mkdirs();
+                file.createNewFile();
             }
-            return fileContents.toString();
-        } finally {
-            scanner.close();
+            StringBuilder fileContents = new StringBuilder((int) file.length());
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                fileContents.append(scanner.nextLine()).append(LINE_SEPARATOR);
+            }
+            result = fileContents.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return result;
     }
 }
