@@ -11,10 +11,14 @@ import java.util.Collection;
  */
 public class Matrix {
 
-    private final int[][] mData;
+    private int[][] data;
+    private int rows;
+    private int cols;
 
     public Matrix(int[][] data) {
-        this.mData = data;
+        this.data = data;
+        this.rows = data.length;
+        this.cols = data[0].length;
     }
 
     /**
@@ -24,15 +28,29 @@ public class Matrix {
      * @param cols number of columns
      */
     private Matrix(int rows, int cols) {
-        this.mData = new int[rows + 1][cols + 1];
+        this.data = new int[rows][cols];
+        this.rows = rows;
+        this.cols = cols;
+    }
+
+    public Matrix() {
+
     }
 
     private int getRows() {
-        return mData.length;
+        return rows;
     }
 
     private int getCols() {
-        return mData[0].length;
+        return cols;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
     }
 
     /**
@@ -65,7 +83,7 @@ public class Matrix {
     }
 
     public void set(int x, int y, int value) {
-        mData[x][y] = value;
+        data[x][y] = value;
     }
 
     /**
@@ -75,7 +93,7 @@ public class Matrix {
      * @param y column position
      */
     public int get(int x, int y) {
-        return mData[x][y];
+        return data[x][y];
     }
 
     /**
