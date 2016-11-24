@@ -1,16 +1,18 @@
-package com.motanttron;
+package com.motanttron.operations;
+
+import com.motanttron.Matrix;
 
 /**
  * Created by calin on 21.11.2016.
  */
-class MatrixAdditionThread extends Thread {
+public class MatrixAdditionThread extends Thread {
     private final Matrix firstMatrix;
     private final Matrix secMatrix;
     private final int i;
     private final int j;
     private final Matrix resMatrix;
 
-    MatrixAdditionThread(Matrix m1, Matrix m2, int x, int y, Matrix result) {
+    public MatrixAdditionThread(Matrix m1, Matrix m2, int x, int y, Matrix result) {
         this.firstMatrix = m1;
         this.secMatrix = m2;
         this.i = x;

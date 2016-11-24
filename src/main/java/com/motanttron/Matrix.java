@@ -1,16 +1,19 @@
 package com.motanttron;
 
+import com.motanttron.operations.MatrixAdditionThread;
+import com.motanttron.operations.MatrixMultiplicationThread;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * com.motanttron.Matrix
  */
-class Matrix {
+public class Matrix {
 
     private final int[][] mData;
 
-    Matrix(int[][] data) {
+    public Matrix(int[][] data) {
         this.mData = data;
     }
 
@@ -39,7 +42,7 @@ class Matrix {
      * @param other the other matrix
      * @return obtained {@link Matrix}
      */
-    Matrix plus(Matrix other) {
+    public Matrix plus(Matrix other) {
         final Collection<Thread> threads = new ArrayList<Thread>();
         Matrix result = new Matrix(getRows(), getCols());
         for (int i = 0; i < this.getRows(); i++) {
@@ -71,7 +74,7 @@ class Matrix {
      * @param x row position
      * @param y column position
      */
-    int get(int x, int y) {
+    public int get(int x, int y) {
         return mData[x][y];
     }
 
@@ -82,7 +85,7 @@ class Matrix {
      * @param other the other matrix
      * @return obtained {@link Matrix}
      */
-    Matrix multiply(Matrix other) {
+    public Matrix multiply(Matrix other) {
         final Collection<Thread> threads = new ArrayList<Thread>();
         Matrix result = new Matrix(getRows(), getCols());
         for (int i = 0; i < this.getRows(); i++) {
@@ -106,7 +109,7 @@ class Matrix {
         return result;
     }
 
-    void sort() {
+    public void sort() {
         boolean sorted = false;
         while (!sorted) {
             for (int i = 0; i < getRows() - 1; i++) {

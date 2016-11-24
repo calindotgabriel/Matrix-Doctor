@@ -1,4 +1,6 @@
-package com.motanttron;
+package com.motanttron.operations;
+
+import com.motanttron.Matrix;
 
 /**
  * Thread class used to make a multiplication operation given 3 distinct coordinates in a BI-Dimensional space.

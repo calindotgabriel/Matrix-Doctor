@@ -1,10 +1,12 @@
-package com.motanttron;
+package com.motanttron.operations;
+
+import com.motanttron.Matrix;
 
 /**
  * Thread class used to make a multiplication operation given 3 distinct coordinates in a BI-Dimensional space.
  * It computes the required value in a separate thread.
  */
-class MatrixMultiplicationThread extends Thread{
+public class MatrixMultiplicationThread extends Thread{
     private final Matrix firstMatrix;
     private final Matrix secMatrix;
     private final int i;
@@ -12,7 +14,7 @@ class MatrixMultiplicationThread extends Thread{
     private final int k;
     private final Matrix resultMatrix;
 
-    MatrixMultiplicationThread(Matrix m1, Matrix m2, int i, int j, int k, Matrix result) {
+    public MatrixMultiplicationThread(Matrix m1, Matrix m2, int i, int j, int k, Matrix result) {
         this.firstMatrix = m1;
         this.secMatrix = m2;
         this.i = i;

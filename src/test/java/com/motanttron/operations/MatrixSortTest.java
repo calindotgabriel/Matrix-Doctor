@@ -1,4 +1,4 @@
-package com.motanttron;
+package com.motanttron.operations;
 
 import com.motanttron.Matrix;
 import org.junit.Test;
