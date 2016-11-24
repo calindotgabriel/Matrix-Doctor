@@ -1,3 +1,6 @@
+package com.motanttron;
+
+import com.motanttron.Matrix;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

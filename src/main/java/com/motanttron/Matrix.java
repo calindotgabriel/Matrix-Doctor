@@ -1,8 +1,10 @@
+package com.motanttron;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * Matrix
+ * com.motanttron.Matrix
  */
 class Matrix {
 

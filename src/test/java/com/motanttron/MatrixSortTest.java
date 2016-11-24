@@ -1,5 +1,7 @@
+package com.motanttron;
+
+import com.motanttron.Matrix;
 import org.junit.Test;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
