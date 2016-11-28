@@ -155,16 +155,18 @@ public class Matrix {
      * Returns a sub-matrix from (i1,j1) to (i2, j2)
      */
     public Matrix cut(int i1, int j1, int i2, int j2) {
-        int rows = 0, cols = 0;
-        final Matrix matrix = new Matrix(i2 - i1 + 1, j2 - j1 + 1);
-        for (int i = i1; i < i2; i++) {
-            rows++;
-            for (int j = j1; j < j2; j++) {
-                cols++;
-                matrix.set(rows, cols, get(i, j));
+        final int rows = i2 - i1;
+        final int cols = j2 - j1;
+        for (int i = i1; i <= i2; i++) {
+            for (int j = j1; j <= j2; j++) {
+//                System.out.println(String.format("[%d, %d]", i, j));
+                final int e = this.get(i, j);
+                int k = i - i1;
+                int l = j - j1;
+                System.out.println(String.format("%d at %d,%d", e, k, l));
             }
         }
-        return matrix;
+        return null;
     }
 
     @Override
