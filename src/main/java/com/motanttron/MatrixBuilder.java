@@ -2,6 +2,10 @@ package com.motanttron;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+
 /**
  * Created by calin on 24.11.2016.
  */
@@ -30,6 +34,23 @@ public class MatrixBuilder {
     }
 
     public static Matrix fromString(String matrix) {
-        throw new NotImplementedException();
+        String s = matrix.trim().replaceAll("\n", "").replaceAll("\r", "").replaceAll(" ", "");
+        int rows = Character.getNumericValue(s.charAt(0));
+        int cols = Character.getNumericValue(s.charAt(1));
+        final Matrix m = new Matrix(rows, cols);
+        int i = 2; // 0 and 1 are rows and cols
+        int r = 0, c = 0;
+        List<Integer> numbers = new ArrayList<>();
+        while (i < s.length()) {
+            final int number = Character.getNumericValue(s.charAt(i));
+            numbers.add(number);
+            i++;
+        }
+        for (int j = 0; j < rows; j++) {
+            for (int k = 0; k < cols; k++) {
+                m.set(j, k, numbers.get(j+k));
+            }
+        }
+        return m;
     }
 }
