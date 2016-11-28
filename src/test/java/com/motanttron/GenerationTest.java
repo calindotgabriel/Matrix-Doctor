@@ -9,7 +9,7 @@ import org.junit.Test;
 public class GenerationTest {
     @Test
     public void testGenerate() {
-//        MatrixBuilder builder = new MatrixBuilder().rows(5).cols(5);
-//        MatrixGenerator.generateMatrix(builder)
+        final Matrix matrix = MatrixGenerator.generateRandom(6, 8);
+        System.out.println(matrix);
     }
 }

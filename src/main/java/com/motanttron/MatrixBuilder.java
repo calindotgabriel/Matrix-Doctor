@@ -33,24 +33,34 @@ public class MatrixBuilder {
         return new Matrix(rows, cols);
     }
 
+    /**
+     * Reads a matrix from a string input.
+     * @param matrix as a string.
+     * FORMAT:
+     *               {noRows}
+     *               {noCols}
+     *               {0,0} {0, 1} ... {0, noCols}
+     *               {1,0} {1, 1} ... {1, noCols}
+     *               ...........................
+     *               ...........................
+     *               {noRows, 0} .......... {noRows, noCols}
+     */
     public static Matrix fromString(String matrix) {
-        String s = matrix.trim().replaceAll("\n", "").replaceAll("\r", "").replaceAll(" ", "");
-        int rows = Character.getNumericValue(s.charAt(0));
-        int cols = Character.getNumericValue(s.charAt(1));
-        final Matrix m = new Matrix(rows, cols);
-        int i = 2; // 0 and 1 are rows and cols
-        int r = 0, c = 0;
-        List<Integer> numbers = new ArrayList<>();
-        while (i < s.length()) {
-            final int number = Character.getNumericValue(s.charAt(i));
-            numbers.add(number);
-            i++;
-        }
-        for (int j = 0; j < rows; j++) {
-            for (int k = 0; k < cols; k++) {
-                m.set(j, k, numbers.get(j+k));
+        String s = matrix;
+        String lines[] = s.split("\\r?\\n");
+        final int rows = Integer.parseInt(lines[0]);
+        final int cols = Integer.parseInt(lines[1]);
+        int[][] data = new int[rows][cols];
+        for (int i = 2; i < lines.length; i++) { // starting from 2 because first are reserved for rows and cols
+            final String line = lines[i];
+            final String[] arrayAsString = line.split(" ");
+            int[] array = new int[arrayAsString.length];
+            for (int j = 0; j < arrayAsString.length; j++) {
+                final int e = Integer.parseInt(arrayAsString[j]);
+                array[j] = e;
             }
+            data[i - 2] = array;
         }
-        return m;
+        return new Matrix(data);
     }
 }

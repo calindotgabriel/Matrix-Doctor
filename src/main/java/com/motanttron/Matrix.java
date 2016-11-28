@@ -37,11 +37,11 @@ public class Matrix {
 
     }
 
-    private int getRows() {
+    public int getRows() {
         return rows;
     }
 
-    private int getCols() {
+    public int getCols() {
         return cols;
     }
 

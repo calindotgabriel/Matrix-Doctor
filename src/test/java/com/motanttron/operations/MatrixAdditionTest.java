@@ -1,6 +1,7 @@
 package com.motanttron.operations;
 
 import com.motanttron.Matrix;
+import com.motanttron.MatrixGenerator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -23,6 +24,16 @@ public class MatrixAdditionTest {
                 {0, 0}
         });
         assertEquals(expected, ADDITION_M1.plus(ADDITION_M2));
+    }
+
+    @Test
+    public void bigPlus() {
+        int rows = 1000;
+        int cols = 1000;
+        final Matrix m1 = MatrixGenerator.generateRandom(rows, cols);
+        final Matrix m2 = MatrixGenerator.generateRandom(rows, cols);
+        final Matrix m = m1.plus(m2);
+        System.out.println(m);
     }
 
 }

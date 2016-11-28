@@ -12,10 +12,36 @@ import static org.junit.Assert.assertEquals;
 public class StringFileMatrixTest {
 
     @Test
-    public void fromFile() throws IOException {
-        String m1 = Utils.safeStringFromFile("m1.txt");
+    public void test2by2() throws IOException {
+        process("m1.txt", new int[][]{
+                {1, 2},
+                {3, 4}
+        });
+    }
+
+    @Test
+    public void test3by3() throws IOException {
+        process("m2.txt", new int[][]{
+                {1, 2, 3},
+                {4, 5, 6}
+        });
+    }
+
+    @Test
+    public void test5by5() throws IOException {
+        process("m3.txt", new int[][]{
+                {1, 1, 1, 1, 1},
+                {2, 2, 2, 2, 2},
+                {3, 3, 3, 3, 3},
+                {4, 4, 4, 4, 4},
+                {5, 5, 5, 5, 5}
+        });
+    }
+
+    private void process(String path, int[][] expected) {
+        String m1 = Utils.safeStringFromFile(path);
         Matrix readMatrix = MatrixBuilder.fromString(m1);
-        final Matrix empty5by5 = new MatrixBuilder().rows(5).cols(5).build();
-        assertEquals(empty5by5, readMatrix);
+        final Matrix expectedMatrix = new Matrix(expected);
+        assertEquals(expectedMatrix, readMatrix);
     }
 }
