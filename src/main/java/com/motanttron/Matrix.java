@@ -79,6 +79,9 @@ public class Matrix {
     }
 
     public void set(int x, int y, int value) {
+       /* if (x > getRows()) {
+            throw new IllegalArgumentException(String.format("Can't set %d at [%d,%d]"));
+        }*/
         data[x][y] = value;
     }
 
@@ -146,6 +149,22 @@ public class Matrix {
                 }
             }
         }
+    }
+
+    /**
+     * Returns a sub-matrix from (i1,j1) to (i2, j2)
+     */
+    public Matrix cut(int i1, int j1, int i2, int j2) {
+        int rows = 0, cols = 0;
+        final Matrix matrix = new Matrix(i2 - i1 + 1, j2 - j1 + 1);
+        for (int i = i1; i < i2; i++) {
+            rows++;
+            for (int j = j1; j < j2; j++) {
+                cols++;
+                matrix.set(rows, cols, get(i, j));
+            }
+        }
+        return matrix;
     }
 
     @Override
