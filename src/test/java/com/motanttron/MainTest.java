@@ -18,7 +18,11 @@ public class MainTest {
 
     @Test
     public void testMath() {
-        compute(24, 6);
+//        compute(24, 6);
+        float r = (float) 8.00;
+        final boolean isIt = r == (int) r;
+        System.out.println(isIt);
+
     }
 
     private void compute(int noOps, int noThreads) {
@@ -42,18 +46,5 @@ public class MainTest {
         }
     }
 
-    class Iteration {
-        int start;
-        int end;
 
-        public Iteration(int start, int end) {
-            this.start = start;
-            this.end = end;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("from %d to %d", start, end);
-        }
-    }
 }
