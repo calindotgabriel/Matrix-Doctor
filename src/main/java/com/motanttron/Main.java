@@ -13,8 +13,7 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        final String file = Utils.safeStringFromFile("file.txt");
-        System.out.println(file);
+
     }
 
 }

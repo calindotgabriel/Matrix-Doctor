@@ -152,21 +152,23 @@ public class Matrix {
     }
 
     /**
-     * Returns a sub-matrix from (i1,j1) to (i2, j2)
+     * Returns a sub-matrix from (i1,j1) to (i2, j2).
      */
     public Matrix cut(int i1, int j1, int i2, int j2) {
-        final int rows = i2 - i1;
-        final int cols = j2 - j1;
+        final int rows = i2 - i1 + 1;
+        final int cols = j2 - j1 + 1;
+        final Matrix m = new Matrix(rows, cols);
         for (int i = i1; i <= i2; i++) {
             for (int j = j1; j <= j2; j++) {
 //                System.out.println(String.format("[%d, %d]", i, j));
                 final int e = this.get(i, j);
                 int k = i - i1;
                 int l = j - j1;
-                System.out.println(String.format("%d at %d,%d", e, k, l));
+                m.set(k, l, e);
+//                System.out.println(String.format("%d at %d,%d", e, k, l));
             }
         }
-        return null;
+        return m;
     }
 
     @Override

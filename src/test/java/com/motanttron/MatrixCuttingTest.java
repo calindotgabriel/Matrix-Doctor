@@ -22,15 +22,15 @@ public class MatrixCuttingTest {
     }
 
     @Test
-    public void test2() {
+    public void test3by4() {
         final Matrix matrix = new Matrix(new int[][]{
                 {0, 2, 3, 4},
                 {5, 6, 7, 8},
                 {8, 3, 2, 1}});
-        final Matrix cut = matrix.cut(1, 1, 3, 3);
+        final Matrix cut = matrix.cut(1, 1, 2, 3);
         final Matrix expected = new Matrix(new int[][]{
-                {0, 2},
-                {5, 6}});
+                {6, 7, 8},
+                {3, 2, 1}});
         assertEquals(expected, cut);
     }
 }
