@@ -18,11 +18,8 @@ public class MainTest {
 
     @Test
     public void testMath() {
-//        compute(24, 6);
-        float r = (float) 8.00;
-        final boolean isIt = r == (int) r;
-        System.out.println(isIt);
-
+        final Matrix matrix = MatrixGenerator.generateIncremental(5, 5);
+        matrix.show();
     }
 
     private void compute(int noOps, int noThreads) {
