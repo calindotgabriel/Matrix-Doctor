@@ -203,4 +203,31 @@ public class Matrix {
     public void show() {
         System.out.print(toString());
     }
+
+    public Position findPosition(int e) {
+        if (e == 0) {
+            return new Position(0, 0);
+        }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (get(i, j) == e) {
+                    return new Position(i, j);
+                }
+            }
+        }
+        throw new RuntimeException("Could not find " + e);
+    }
+
+    public int get(Position pos) {
+        return get(pos.x, pos.y);
+    }
+
+    public void showIndices() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.printf("[%d,%d] ", i, j);
+            }
+            System.out.println();
+        }
+    }
 }

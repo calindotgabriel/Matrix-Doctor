@@ -20,12 +20,16 @@ public class MatrixGenerator {
 
     public static Matrix generateIncremental(int rows, int cols) {
         final Matrix m = new Matrix(rows, cols);
-        int c = 0;
+        int from = 0;
         for (int i = 0; i < m.getRows(); i++) {
             for (int j = 0; j < m.getCols(); j++) {
-                m.set(i, j, c++);
+                m.set(i, j, from++);
             }
         }
         return m;
+    }
+
+    public static Matrix generateEmpty(int rows, int cols) {
+        return new Matrix(rows, cols);
     }
 }

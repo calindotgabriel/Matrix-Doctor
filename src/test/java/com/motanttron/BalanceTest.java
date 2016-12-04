@@ -47,7 +47,31 @@ public class BalanceTest {
     public void test25by2() {
         final List<Iteration> iterations = IterationManager.getIterations(25, 2);
         assertEquals(iteration(0, 12), iterations.get(0));
-        assertEquals(iteration(12, 25), iterations.get(1));
+        assertEquals(iteration(12, 24), iterations.get(1));
+    }
+
+    @Test
+    public void testComplete() {
+        int threads = 3;
+        int rows = 4;
+        int cols = 4;
+        final Matrix inc = MatrixGenerator.generateIncremental(rows, cols);
+        inc.show();
+        final List<Iteration> iterations = IterationManager.getIterations(rows * cols, threads);
+        printIterations(iterations);
+        for (Iteration it : iterations) {
+            final Position startPos = inc.findPosition(it.start);
+            final Position endPos = inc.findPosition(it.end);
+            System.out.println(startPos + " & " + endPos);
+            System.out.printf("Threads goes from %d to %d \n", inc.get(startPos), inc.get(endPos));
+        }
+
+    }
+
+    private void printIterations(List<Iteration> iterations) {
+        for (Iteration it : iterations) {
+            System.out.println(it);
+        }
     }
 
     private Iteration iteration(int s, int e) {
