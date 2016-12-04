@@ -40,7 +40,7 @@ public class StringFileMatrixTest {
 
     private void process(String path, int[][] expected) {
         String m1 = Utils.safeStringFromFile(path);
-        Matrix readMatrix = MatrixBuilder.fromString(m1);
+        Matrix readMatrix = Matrix.fromString(m1);
         final Matrix expectedMatrix = new Matrix(expected);
         assertEquals(expectedMatrix, readMatrix);
     }
