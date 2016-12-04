@@ -38,6 +38,7 @@ public class Sectioner {
      * startPoint = 3, 0
      * endPoint = 5, 5
      * startPoint = 5, 0
+     *
      * @return List of sections
      */
     public static List<Section> getSections(int rows, int cols, int threads) {

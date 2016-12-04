@@ -21,7 +21,7 @@ public class TestThreadedAddition {
      * and working from there to how it will be generated.
      */
     @Test
-    public void test() {
+    public void testAddition() {
         final int rows = 50;
         final int cols = 50;
         final int threads = 3;
@@ -41,9 +41,35 @@ public class TestThreadedAddition {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
+    /**
+     *
+     */
+    @Test
+    public void testMultiplication() {
+        final int rows = 50;
+        final int cols = 50;
+        final int threads = 3;
+        final Matrix m1 = MatrixGenerator.generateIncremental(rows, cols);
+        final Matrix m2 = MatrixGenerator.generateIncremental(rows, cols);
+        final Matrix m3 = MatrixGenerator.generateEmpty(rows, cols);
+
+        final List<Section> sections = Sectioner.getSections(rows, cols, threads);
+
+        final ExecutorService executor = Executors.newFixedThreadPool(threads);
+        for (Section section : sections) {
+            executor.submit(new MatrixMultiMultiplicationThread(section.from, section.to, m1, m2, m3));
+        }
+        executor.shutdown();
+        try {
+            executor.awaitTermination(1, TimeUnit.DAYS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        m3.show();
+    }
 
     @Test
     public void test2() {

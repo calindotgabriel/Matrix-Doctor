@@ -221,8 +221,9 @@ public class Matrix {
     /**
      * /**
      * Reads a matrix from a string input.
+     *
      * @param matrix as a string.
-     * FORMAT:
+     *               FORMAT:
      *               {noRows}
      *               {noCols}
      *               {0,0} {0, 1} ... {0, noCols}

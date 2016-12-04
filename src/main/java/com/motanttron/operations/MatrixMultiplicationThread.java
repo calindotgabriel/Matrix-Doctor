@@ -6,7 +6,7 @@ import com.motanttron.Matrix;
  * Thread class used to make a multiplication operation given 3 distinct coordinates in a BI-Dimensional space.
  * It computes the required value in a separate thread.
  */
-public class MatrixMultiplicationThread extends Thread{
+public class MatrixMultiplicationThread extends Thread {
     private final Matrix firstMatrix;
     private final Matrix secMatrix;
     private final int i;

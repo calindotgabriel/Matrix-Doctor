@@ -16,7 +16,7 @@ public class IterationManager {
         int end = start + r;
         for (int i = 0; i < noThreads; i++) {
             iterations.add(new Iteration(start, end));
-            start = end ; // [ )
+            start = end; // [ )
             end = start + r;
         }/*
         boolean commaRatio = ratio != (int) ratio;
